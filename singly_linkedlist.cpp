@@ -68,12 +68,25 @@ void insertAtPosition(LinkedListNode *&head, LinkedListNode *&tail,  int positio
    }
 }
 
+
+void printList(LinkedListNode *&head)
+{
+
+    LinkedListNode *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << " NULL" << endl;
+}
+
 void FindMiddleElement(LinkedListNode*&head)
 {
     //BRUTE FORCE:
-   int count =1;
+   int count =0;
     LinkedListNode* temp = head;
-    while(temp->next!=NULL)
+    while(temp!=NULL)
     {
         temp= temp->next;
         count ++;
@@ -91,19 +104,10 @@ void FindMiddleElement(LinkedListNode*&head)
     temp1= temp1->next;
     cout<<temp1->data<<endl;
 }
-
-void printList(LinkedListNode *&head)
+void duplicate(LinkedListNode* &head)
 {
 
-    LinkedListNode *temp = head;
-    while (temp != NULL)
-    {
-        cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-    cout << " NULL" << endl;
 }
-
 int main()
 {
 
