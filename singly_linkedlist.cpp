@@ -36,38 +36,55 @@ void insertAtHead(LinkedListNode *&head, int data)
 // }
 void insertAtTail(LinkedListNode *&tail, int data)
 {
-     LinkedListNode *temp = new LinkedListNode(data);
-     tail->next= temp;
-     tail= tail->next;
+    LinkedListNode *temp = new LinkedListNode(data);
+    tail->next = temp;
+    tail = tail->next;
 }
-void insertAtPosition(LinkedListNode *&head, LinkedListNode *&tail,  int position, int data)
+void insertAtPosition(LinkedListNode *&head, LinkedListNode *&tail, int position, int data)
 {
-    //starting insertion:
-    if(position==1)
+    // starting insertion:
+    if (position == 1)
     {
-        insertAtHead(head,data);
+        insertAtHead(head, data);
         return;
     }
-    
-   LinkedListNode* temp= head;
-   int count = 1; //that is abhi head pe hai.
-   while(count < position-1)
-   {
-     temp= temp->next;
-     count++;
-   }
-   if(temp->next==NULL)
-   {
-    insertAtTail(tail,data);
-    return;
-   }
-   else{
-    LinkedListNode *nodeToInsert = new LinkedListNode(data);
-    nodeToInsert->next= temp->next;
-    temp->next= nodeToInsert;
-   }
-}
 
+    LinkedListNode *temp = head;
+    int count = 1; // that is abhi head pe hai.
+    while (count < position - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    if (temp->next == NULL)
+    {
+        insertAtTail(tail, data);
+        return;
+    }
+    else
+    {
+        LinkedListNode *nodeToInsert = new LinkedListNode(data);
+        nodeToInsert->next = temp->next;
+        temp->next = nodeToInsert;
+    }
+}
+// second largest element;
+void secondLargest(LinkedListNode *&head)
+{
+    LinkedListNode *temp = head;
+    LinkedListNode *large = NULL;
+    LinkedListNode *secondlarge = NULL;
+  while (temp != NULL) {
+    if (large == NULL || temp->data > large->data) {
+        secondlarge = large;
+        large = temp;        
+    } else if (secondlarge == NULL || (temp->data > secondlarge->data && temp->data < large->data)) {
+        secondlarge = temp;
+    }
+    temp = temp->next;
+}
+    cout << secondlarge->data << "LARGE: " << large->data << endl;  
+}
 
 void printList(LinkedListNode *&head)
 {
@@ -81,32 +98,31 @@ void printList(LinkedListNode *&head)
     cout << " NULL" << endl;
 }
 
-void FindMiddleElement(LinkedListNode*&head)
+void FindMiddleElement(LinkedListNode *&head)
 {
-    //BRUTE FORCE:
-   int count =0;
-    LinkedListNode* temp = head;
-    while(temp!=NULL)
+    // BRUTE FORCE:
+    int count = 0;
+    LinkedListNode *temp = head;
+    while (temp != NULL)
     {
-        temp= temp->next;
-        count ++;
+        temp = temp->next;
+        count++;
     }
-    int mid= (count/2)  ;
-    cout<<"mid: "<<mid<<" "<<"count: "<<count<<endl;
-    LinkedListNode* temp1= head;
+    int mid = (count / 2);
+    cout << "mid: " << mid << " " << "count: " << count << endl;
+    LinkedListNode *temp1 = head;
     // while(mid>1)
     // {
     //     temp1= temp1->next;
     //     mid--;
 
     // }
-    for(int i=mid-1;i>0;i--)
-    temp1= temp1->next;
-    cout<<temp1->data<<endl;
+    for (int i = mid - 1; i > 0; i--)
+        temp1 = temp1->next;
+    cout << temp1->data << endl;
 }
-void duplicate(LinkedListNode* &head)
+void duplicate(LinkedListNode *&head)
 {
-
 }
 int main()
 {
@@ -125,7 +141,7 @@ int main()
     insertAtTail(tail, 39);
     insertAtTail(tail, 45);
     insertAtTail(tail, 22);
-    insertAtPosition(head,tail, 3,8);
+    insertAtPosition(head, tail, 3, 8);
     printList(head);
-    FindMiddleElement(head);
+    secondLargest(head);
 }
