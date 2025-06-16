@@ -13,7 +13,7 @@ int partition(int arr[], int start, int end)
     //placing pivot at the right position:
     int pivotIndex = start + smallCount;
     swap(arr[pivotIndex],arr[start]);
-
+    
     //left-right wala part:
     int i= start;
     int j= end;
